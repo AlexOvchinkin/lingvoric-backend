@@ -1,12 +1,16 @@
 const logger = require('../lib/logger');
-const mongoose = require('mongoose');
+const VideoModel = require('../models/video');
+const JSONStream = require('JSONStream');
 
 module.exports = function(req, res, next) {
+  
   logger.info('handled route: get-video-list');
   
-  mongoose.connection.db
-    .listCollections()
-    .toArray(function(err, names) {
-      res.status(200).send(names);
-    });
+  const cursor = VideoModel.find().cursor();
+
+  cursor.on('error', function (err) {
+    return next(err);
+  });
+
+  cursor.pipe(JSONStream.stringify()).pipe(res);
 };
