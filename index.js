@@ -1,11 +1,15 @@
-var express    = require('express');
-var app        = express();
-const mongoose = require('./lib/mongoose');
+const express    = require('express');
+const bodyParser = require('body-parser')
+const mongoose   = require('./lib/mongoose');
 
 const logger     = require('./lib/logger');
 const API        = require('./lib/router-api');
 const VideoModel = require('./models/video');
 
+// start Express
+const app = express();
+
+const jsonParser = bodyParser.json();
 
 // Mongo DB
 mongoose.connection.on('error', function() {
@@ -18,7 +22,7 @@ mongoose.connection.once('open', function() {
 
 
 // API handlers
-app.use('/api', API);
+app.use('/api', jsonParser, API);
 
 // global error handler
 function errorHandler(err, req, res, next) {
@@ -31,21 +35,16 @@ app.listen(3000, function() {
   logger.info('Listening port 3000 ...');
 });
 
-
-// TEST
 /*
-const video = new VideoModel({
-  title: 'Big Bang Theory',
-  subtitle: 'e.2',
-  filename: '04_02.mp4'
-});
-
-video.save(function(err, user, affected) {
-  if (err) {
-    logger.error('video NOT saved');
-    return;
-  }
-
-  logger.info('video saved successful');
-});
+logger.info(JSON.stringify({
+  title: "video 3",
+  subtitle: "epizode 23",
+    subs: [
+    {
+      begin: "123456",
+      end: "654123",
+      text: "Hi its test sub ..."
+    }
+  ]
+}));
 */
