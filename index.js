@@ -1,6 +1,7 @@
 const express    = require('express');
 const bodyParser = require('body-parser')
 const mongoose   = require('./lib/mongoose');
+const cors       = require('cors');
 
 const logger     = require('./lib/logger');
 const API        = require('./lib/router-api');
@@ -9,7 +10,11 @@ const VideoModel = require('./models/video');
 // start Express
 const app = express();
 
-const jsonParser = bodyParser.json();
+// CORS ENABLED
+app.use(cors());
+
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // Mongo DB
 mongoose.connection.on('error', function() {
@@ -22,10 +27,11 @@ mongoose.connection.once('open', function() {
 
 
 // API handlers
-app.use('/api', jsonParser, API);
+app.use('/api', API);
 
 // global error handler
 function errorHandler(err, req, res, next) {
+  logger.err(err);
   res.status(500);
   res.send(err);
 }
