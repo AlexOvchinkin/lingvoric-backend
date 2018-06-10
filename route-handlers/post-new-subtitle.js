@@ -4,7 +4,8 @@ const logger = require('../lib/logger');
 const JSONStream = require('JSONStream');
 const streamify       = require('stream-array');
 const config = require('../config');
-const { createDirectory } = require('../scripts/filesystem');
+const { mkdir } = require('fs');
+const { createDirectory, createEmptyDirectory } = require('../scripts/filesystem');
 
 module.exports = function(req, res, next) {
   logger.info('handled route: new-title');
@@ -37,7 +38,15 @@ module.exports = function(req, res, next) {
         }
       }
 
-      const readable = streamify(directories);
-      readable.pipe(JSONStream.stringify()).pipe(res);
+      // create sub-directories
+      createEmptyDirectory(`${directory}/${subtitle}`, 'video')
+        .then(createEmptyDirectory(`${directory}/${subtitle}`, 'posters'))
+        .then(createEmptyDirectory(`${directory}/${subtitle}`, 'subs'))
+        .then(() => {
+          // send result
+          const readable = streamify(directories);
+          readable.pipe(JSONStream.stringify()).pipe(res);
+        })
+        .catch(err => next(err));
     });
 }

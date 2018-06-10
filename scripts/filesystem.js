@@ -49,5 +49,18 @@ function createDirectory(path, name, cb) {
   });
 }
 
+function createEmptyDirectory(path, name) {
+  return new Promise((resolve, reject) => {
+    mkdir(`${path}/${name}`, err => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve('success');
+      }
+    });
+  }); 
+}
+
 module.exports.readDirectories = readDirectories;
 module.exports.createDirectory = createDirectory;
+module.exports.createEmptyDirectory = createEmptyDirectory;
