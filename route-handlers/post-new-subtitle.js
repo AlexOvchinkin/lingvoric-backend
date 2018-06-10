@@ -41,7 +41,6 @@ module.exports = function(req, res, next) {
       // create sub-directories
       createEmptyDirectory(`${directory}/${subtitle}`, 'video')
         .then(createEmptyDirectory(`${directory}/${subtitle}`, 'posters'))
-        .then(createEmptyDirectory(`${directory}/${subtitle}`, 'subs'))
         .then(() => {
           // send result
           const readable = streamify(directories);

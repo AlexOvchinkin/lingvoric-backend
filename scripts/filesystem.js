@@ -1,5 +1,5 @@
 const { join, basename } = require('path');
-const { lstatSync, readdirSync, readdir, mkdir } = require('fs');
+const fs = require('fs');
 
 /*
  * function returns all subfolders of given folder
@@ -10,7 +10,7 @@ function readDirectories(directory, cb) {
     return;
   }
 
-  readdir(directory, function (err, items) {
+  fs.readdir(directory, function (err, items) {
     if (err) {
       cb(err);
       return;
@@ -39,7 +39,7 @@ function readDirectories(directory, cb) {
 function createDirectory(path, name, cb) {
   const directoryPath = `${path}/${name}`;
 
-  mkdir(directoryPath, function (err) {
+  fs.mkdir(directoryPath, function (err) {
     if (err) {
         cb(err)
         return;
@@ -51,7 +51,7 @@ function createDirectory(path, name, cb) {
 
 function createEmptyDirectory(path, name) {
   return new Promise((resolve, reject) => {
-    mkdir(`${path}/${name}`, err => {
+    fs.mkdir(`${path}/${name}`, err => {
       if (err) {
         reject(err);
       } else {
@@ -61,6 +61,23 @@ function createEmptyDirectory(path, name) {
   }); 
 }
 
+function writeFile(path, filename, file) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(
+      `${path}/${filename}`,
+      Buffer(file, 'base64'),
+      err => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve('success');
+        }
+      }
+    );
+  });
+}
+
 module.exports.readDirectories = readDirectories;
 module.exports.createDirectory = createDirectory;
 module.exports.createEmptyDirectory = createEmptyDirectory;
+module.exports.writeFile = writeFile;
