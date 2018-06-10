@@ -9,35 +9,64 @@ module.exports = function (req, res, next) {
 
   const body = req.body;
 
-  // файл (видео) записывать его в нужную директорию
-  // сделать передачу ВСЕХ полей на клиенте с валидацией (не пустые значения)
+  const emptyFields = getEmptyFields(
+    body,
+    ['title', 'subtitle', 'videoFile', 'videoName', 'posterFile', 'posterName']
+  );
 
-  if (!body.file) return next('Uploading file is NULL');
+  if(emptyFields.length > 0) return next(`Empty fields: ${emptyFields.join}`)
 
-  const path = `${config.videoDirectory}/${body.filename}`
+  const path = `${config.rootVideoDir}/${body.title}/${body.subtitle}`;
+  const videoPath = `${path}/video`;
+  const posterPath = `${path}/posters`;
 
-  fs.writeFile(
-    path, 
-    Buffer(body.file, 'base64'), 
-    function(err) {
-      if (err) return next(err);
 
+  writeFile(videoPath, body.videoName, body.videoFile)
+    .then(writeFile(posterPath, body.posterName, body.posterFile))
+    .then(result => {
       if (body.id) {
         update(res, body, next);
       } else {
         create(res, body, next);
-      } 
-    });
-  
+      }
+    })
+    .catch(err => next(err));
 };
+
+function getEmptyFields(obj, fields) {
+  const emptyFields = [];
+
+  fields.forEach(fieldName => {
+    if (!obj[fieldName]) emptyFields.push(fieldName);
+  });
+
+  return emptyFields;
+}
+
+function writeFile(path, filename, file) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(
+      `${path}/${filename}`,
+      Buffer(file, 'base64'),
+      err => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve('success');
+        }
+      }
+    );
+  });
+}
 
 // create new record in DB
 function create(res, body, next) {
   const video = new VideoModel({
-    title    : body.title,
-    subtitle : body.subtitle,
-    filename : body.filename,
-    subs     : body.subs
+    title      : body.title,
+    subtitle   : body.subtitle,
+    videoName  : body.videoName,
+    posterName : body.posterName,
+    subs       : body.subs
   });
 
   video.save(function (err) {
@@ -50,12 +79,13 @@ function create(res, body, next) {
 function update(res, body, next) {
   VideoModel
     .findOneAndUpdate(
-      { _id: body.id },
+      { _id        : body.id },
       {
-        title    : body.title,
-        subtitle : body.subtitle,
-        filename : body.filename,
-        subs     : body.subs
+        title      : body.title,
+        subtitle   : body.subtitle,
+        videoName  : body.videoName,
+        posterName : body.posterName,
+        subs       : body.subs
       },
       { upsert: true, runValidators: true },
       function (err) {
@@ -66,4 +96,14 @@ function update(res, body, next) {
         res.status(200).send(JSON.stringify('Video saved successful'));
       }
     );
+}
+
+function getEmptyFields(body, fields) {
+  const emptyFields = [];
+
+  fields.forEach(element => {
+    if (!body[element]) emptyFields.push(element);
+  });
+
+  return emptyFields;
 }

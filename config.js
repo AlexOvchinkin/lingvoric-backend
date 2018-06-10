@@ -3,5 +3,5 @@ module.exports = {
     server : 'localhost',
     db     : 'lingvoric'
   },
-  videoDirectory: process.cwd() + '/../PUBLIC/videos'
+  rootVideoDir: process.cwd() + '/../PUBLIC/video-data/'
 };
