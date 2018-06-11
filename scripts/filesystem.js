@@ -18,7 +18,7 @@ function readDirectories(directory, cb) {
 
     try {
       const directories = items.map( filename => join(directory, filename) )
-        .filter( path => lstatSync(path).isDirectory() )
+        .filter( path => fs.lstatSync(path).isDirectory() )
         .map( path => {
           return { name: basename(path) };
         });

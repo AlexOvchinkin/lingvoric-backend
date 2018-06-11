@@ -28,7 +28,7 @@ module.exports = function(req, res, next) {
             return;
           
           default:
-            logger.err(err);
+            logger.error(err);
             return next(err);
         }
       }

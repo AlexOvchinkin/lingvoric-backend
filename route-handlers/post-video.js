@@ -1,7 +1,7 @@
 const config = require('../config');
 const logger = require('../lib/logger');
 const { writeFile } = require('../scripts/filesystem');
-const { createNewRecord, updateRecord } = require('../scripts/database');
+const { saveVideoData } = require('../scripts/database');
 
 module.exports = function (req, res, next) {
 
@@ -23,19 +23,8 @@ module.exports = function (req, res, next) {
 
   writeFile(videoPath, body.videoName, body.videoFile)
     .then(writeFile(posterPath, body.posterName, body.posterFile))
-    .then(result => {
-      if (body.id) {
-        updateRecord(body, function(err, result) {
-          if (err) return next(err);
-          res.status(200).send(JSON.stringify(result));
-        });
-      } else {
-        createNewRecord(body, function(err, result) {
-          if (err) return next(err);
-          res.status(200).send(JSON.stringify(result));
-        });
-      }
-    })
+    .then(saveVideoData(body))
+    .then(result => res.status(200).send(JSON.stringify(result)))
     .catch(err => next(err));
 };
 

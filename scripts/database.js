@@ -45,5 +45,24 @@ function updateRecord(obj, cb) {
     );
 }
 
-module.exports.createNewRecord = createNewRecord;
-module.exports.updateRecord = updateRecord;
+
+/*
+ * function saves new video data from request to DB
+ */
+function saveVideoData(body) {
+  return new Promise((resolve, reject) => {
+    if (body.id) {
+      updateRecord(body, function(err, result) {
+        if (err) return reject(err);
+        resolve(result);
+      });
+    } else {
+      createNewRecord(body, function(err, result) {
+        if (err) return reject(err);
+        resolve(result);
+      });
+    }
+  });
+}
+
+module.exports.saveVideoData   = saveVideoData;
