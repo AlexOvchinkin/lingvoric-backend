@@ -13,6 +13,10 @@ const app = express();
 // CORS ENABLED
 app.use(cors());
 
+// PUG
+app.set('views', './views');
+app.set('view engine', 'pug');
+
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
@@ -28,6 +32,7 @@ mongoose.connection.once('open', function() {
 
 // API handlers
 app.use('/api', API);
+app.get('/', require('./route-handlers/get-start-page'));
 
 // global error handler
 function errorHandler(err, req, res, next) {
@@ -41,16 +46,3 @@ app.listen(3000, function() {
   logger.info('Listening port 3000 ...');
 });
 
-/*
-logger.info(JSON.stringify({
-  title: "video 3",
-  subtitle: "epizode 23",
-    subs: [
-    {
-      begin: "123456",
-      end: "654123",
-      text: "Hi its test sub ..."
-    }
-  ]
-}));
-*/
