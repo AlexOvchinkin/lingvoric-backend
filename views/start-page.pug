@@ -1,11 +1,136 @@
-html
+doctype html
+html(lang="en")
   head
-    link(rel="stylesheet", type="text/css", href="/styles/bootstrap.min.css")
-    title test template
-  body 
-    p.h1 Hello there
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
 
-    script(type='text/javascript', src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
-    script(type='text/javascript', src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js')
-    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js')
+    link(rel="icon", href="pict/favicon.png")
+    link(rel="stylesheet" href="styles.css")
+
+    title Lingvoric
+  
+  body
+    nav(class="navbar navbar-expand-lg fixed-top navbar-light")
+      div(class="container")
+        a(class="navbar-brand" href="#")
+          img(src="pict/logo.png" height="50" alt="")
+        button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+            span(class="navbar-toggler-icon")
+        div(class="collapse navbar-collapse text-right" id="navbarSupportedContent")
+          a(class="btn btn-outline-success my-1 px-5 my-sm-0 ml-auto" href="/register") Войти
+    header
+      div(class="header-overlay")
+        div(class="container")
+          div(class="row")
+            div(class="col-12 col-lg-7 left-side mt-5 px-4 py-3 py-lg-5")
+              p(class="big-text") Научись понимать английский
+              p(class="middle-text mb-3") Самые яркие моменты из популярных фильмов и сериалов
+              p(class="small-text") Отрывки из кино от 30 секунд до 2 минут с кликабельными субтитрами 
+                |— эффект, как при погружении в среду носителей языка
     
+    section(class="section-try")
+      p(class="section-try__title") Попробуй
+      p(class="section-try__subtitle") это бесплатно
+      a(class="btn bg-danger section-try__btn" href="/register") Зарегистрироваться
+
+    section(class="check-table")
+      div(class="container")
+        div(class="row")
+          div(class="col-12 col-lg-6")
+            div(class="row check-table__item")
+              div(class="col-12 col-sm-3")
+                img(class="check-table__img" src="pict/check.png" alt="check")
+              div(class="col-12 col-sm-9")
+                p(class="check-table__text") Бесплатно
+          
+          div(class="col-12 col-lg-6")
+            div(class="row check-table__item")
+              div(class="col-12 col-sm-3")
+                img(class="check-table__img" src="pict/check.png" alt="check")
+              div(class="col-12 col-sm-9")
+                p(class="check-table__text") Короткие ролики, не более 2 минут 
+
+        div(class="row")
+          div(class="col-12 col-lg-6")
+            div(class="row check-table__item")
+              div(class="col-12 col-sm-3")
+                img(class="check-table__img" src="pict/check.png" alt="check")
+              div(class="col-12 col-sm-9")
+                p(class="check-table__text") Практика восприятия "native" речи на слух
+          
+          div(class="col-12 col-lg-6")
+            div(class="row check-table__item")
+              div(class="col-12 col-sm-3")
+                img(class="check-table__img" src="pict/check.png" alt="check")
+              div(class="col-12 col-sm-9")
+                p(class="check-table__text") Мгновенный переход на нужный момент          
+
+    section(class="fun-learning")
+      div(class="container")
+        p(class="fun-learning__title") Совершенствуйтесь с удовольствием!
+        p(class="fun-learning__text mb-5") В интернете много отличных ресурсов, с помощью которых можно получить 
+          |и закрепить знания по лексике и грамматике. Можно даже самостоятельно 
+          |вызубрить кучу слов. Но научиться воспринимать речь на слух, да еще и 
+          |в нормальном разговорном темпе - это наша общая проблема.
+        p(class="fun-learning__text") Включать многочасовые видео со встроенными субтитрами не у всех есть время и возможность … 
+          |в конце концов - это скучно, нудно и, конечно же, неэффективно.
+    section(class="fun-slogans")
+      div(class="container")  
+        div(class="row fun-slogans__item")
+          div(class="col-12 col-lg-6")
+            img(class="fun-slogans__img img-left" src="pict/learning.jpg", alt="learning")
+          div(class="col-12 col-lg-6 d-flex align-items-center justify-content-center")  
+            p(class="fun-slogans__text") Учеба должна быть увлекательной  
+        
+        div(class="row fun-slogans__item")
+          div(class="col-12 col-lg-6 d-flex align-items-center justify-content-center order-last order-lg-first")
+            p(class="fun-slogans__text") Скоро вы сможете наслаждаться просмотром фильмов в оригинале, 
+              |и даже новостные выпуски больше не будут проблемой      
+          div(class="col-12 col-lg-6 order-first  order-lg-last")  
+            img(class="fun-slogans__img img-right" src="pict/cinema.jpg", alt="learning")
+
+        div(class="row fun-slogans__item")
+          div(class="col-12 col-lg-6")
+            img(class="fun-slogans__img img-left" src="pict/welcome.jpg", alt="learning")
+          div(class="col-12 col-lg-6  d-flex align-items-center justify-content-center")  
+            p(class="fun-slogans__text") Заходите и попробуйте            
+
+    section(class="steps-section")
+      div(class="container")
+        p(class="steps-section__title") Все просто
+        ul(class="steps-section__list")
+          li(class="d-flex flex-column flex-sm-row steps-section__item")
+            img(class="steps-section__img" src="pict/phone.png", alt="check") 
+            p(class="steps-section__text") Вы заходите на сайт с любого устройства и выбираете ролик для просмотра
+          li(class="d-flex flex-column flex-sm-row steps-section__item")
+            img(class="steps-section__img" src="pict/video.png", alt="check") 
+            p(class="steps-section__text") Смотрите запись длиной от 30 сек. до 2 мин
+          li(class="d-flex flex-column flex-sm-row steps-section__item")
+            img(class="steps-section__img" src="pict/subtitles.png", alt="check") 
+            p(class="steps-section__text") Субтитры идут рядом с видео, подсвечиваясь в нужный момент
+          li(class="d-flex flex-column flex-sm-row steps-section__item")
+            img(class="steps-section__img" src="pict/back.png", alt="check") 
+            p(class="steps-section__text") При необходимости, нажав на текст, можно вернуть видео к непонятому моменту  
+          li(class="d-flex flex-column flex-sm-row steps-section__item")
+            img(class="steps-section__img" src="pict/time.png", alt="check") 
+            p(class="steps-section__text") Знания английского закрепляются и совершенствуются
+          li(class="d-flex flex-column steps-section__item")
+            img(class="steps-section__img last-img" src="pict/gift.png", alt="check") 
+            p(class="steps-section__text last-text") Совсем скоро вы уже забываете подсматривать в субтитры и наконец-то сможете пересмотреть целиком любимые фильмы в оригинальном звучании
+
+    section(class="section-try")
+      a(class="btn bg-danger section-try__btn" href="/register") Зарегистрироваться
+
+    footer(class="footer")
+      div(class="container d-flex flex-column align-items-center")
+        a(class="navbar-brand footer__brand" href="#")
+          img(src="pict/logo.png" height="30" alt="")
+        div
+          |Разработка:
+          |  
+          a(class="footer__link" href="http://alexovchinkin.com")
+            i Alex Ovchinkin  
+
+    script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous")
