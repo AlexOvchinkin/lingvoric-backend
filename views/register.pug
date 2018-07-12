@@ -1,0 +1,58 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+    link(rel="icon", href="pict/favicon.png")
+    link(rel="stylesheet" href="register.css")
+
+    title Lingvoric
+  
+  body
+    nav(class="navbar navbar-expand-lg fixed-top navbar-light")
+      div(class="container")
+        a(class="navbar-brand" href="#")
+          img(src="pict/logo.png" height="50" alt="")
+        button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+            span(class="navbar-toggler-icon")
+        div(class="collapse navbar-collapse text-right" id="navbarSupportedContent")
+          a(class="btn btn-outline-success my-1 px-5 my-sm-0 ml-auto" href="/register") Войти
+
+    section(class="about")
+      div(class="container")
+        div(class="card about__card")
+          img(class="card-img-top" src="http://via.placeholder.com/300x300" alt="Card image cap")
+          div(class="card-body")
+            p(class="card-title about__title mt-3") Привет! Меня зовут Алексей.
+            p(class="card-title about__title mb-3") Я разработчик этого сервиса.
+            p(class="card-text about__text") В процессе изучения языка я  сам столкнулся с трудностями 
+              |восприятия беглой "нативной" речи.
+            p(class="card-text about__text") Поэтому и возникла идея создать этот сервис, чтобы помочь 
+              |себе и всем тем, кто также изучает английский и хочет нормально воспринимать его 
+              |на слух и иметь возможность смотреть кино, сериалы в оригинальном звучании, слушать 
+              |и понимать песни целиком, а не отдельные слова из припева, да и на пляже поболтать 
+              |с барменом, обсуждая достоинства того или иного напитка &#128521;
+            p(class="card-text font-italic about__text") Сейчас сервис проходит последние этапы тестирования. 
+              |До запуска остались считанные дни.
+            p(class="card-text font-italic about__text") Если вам стало интересно - оставьте, пожалуйста, адрес вашей почты 
+              |и я сообщу вам персонально, когда он запустится.
+            p(class="h2 card-text text-center about__text my-5") Спасибо за ваше внимание!
+          form(class="form-inline" action="/register-user" method="POST")
+            div(class="col-12 col-sm-10")
+              div(class="input-group")
+                div(class="input-group-prepend")
+                  div(class="input-group-text") e-mail              
+                input(type="text" class="form-control" id="inlineFormEmail" placeholder="email")
+            div(class="col-12 col-sm-2 d-flex justify-content-end")
+              button(class="btn btn-success about__btn" type="submit") Отправить      
+
+  script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")
+  script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous")   
+
+
+
+
+
+

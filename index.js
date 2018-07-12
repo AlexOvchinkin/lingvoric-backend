@@ -30,9 +30,16 @@ mongoose.connection.once('open', function() {
 });
 
 
-// API handlers
+// ROUTES
+// router - API
 app.use('/api', API);
+
+// GET
 app.get('/', require('./route-handlers/get-start-page'));
+app.get('/register', require('./route-handlers/get-register-page'));
+
+// POST
+app.post('/register-user', require('./route-handlers/post-register-user'));
 
 // global error handler
 function errorHandler(err, req, res, next) {
