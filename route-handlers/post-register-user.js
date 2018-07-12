@@ -26,7 +26,7 @@ module.exports = function(req, res, next) {
       const result = JSON.parse(body);
 
       if(!result.success) {
-        res.status(403).send('reCaptcha verification failed');
+        res.status(403).send(`reCaptcha verification failed, ip: ${req.connection.remoteAddress}`);
         logger.info(`reCaptcha verification failed, ip: ${req.connection.remoteAddress}`);
         return;
       }
