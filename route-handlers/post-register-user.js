@@ -9,6 +9,17 @@ const config = require('../config');
 module.exports = function(req, res, next) {
   logger.info('handled route: POST register-user');
 
+  ///////////////// tests
+  // logger.info(`x-forwarded-for: ${req.headers["x-forwarded-for"]}`);
+  // logger.info(`x-real-ip: ${req.headers["x-real-ip"]}`);
+
+  res.status(200).send(JSON.stringify({
+    'x-forwarded-for' : req.headers["x-forwarded-for"],
+    'x-real-ip'       : req.headers["x-real-ip"]
+  }));
+  return;
+  //////////////////////////////
+
   const reCaptcha = req.body["g-recaptcha-response"];
 
   if (reCaptcha) {
