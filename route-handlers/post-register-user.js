@@ -9,24 +9,14 @@ const config = require('../config');
 module.exports = function(req, res, next) {
   logger.info('handled route: POST register-user');
 
-  ///////////////// tests
-  // logger.info(`x-forwarded-for: ${req.headers["x-forwarded-for"]}`);
-  // logger.info(`x-real-ip: ${req.headers["x-real-ip"]}`);
-
-  res.status(200).send(JSON.stringify({
-    'x-forwarded-for' : req.headers["x-forwarded-for"],
-    'x-real-ip'       : req.headers["x-real-ip"]
-  }));
-  return;
-  //////////////////////////////
-
   const reCaptcha = req.body["g-recaptcha-response"];
+  const remoteip = req.headers["x-forwarded-for"];
 
   if (reCaptcha) {
     const params = queryString.stringify({
       'secret'   : secretKeys.reCaptchaKey,
       'response' : 'g-recaptcha-response',
-      'remoteip' : req.connection.remoteAddress 
+      'remoteip' :  remoteip
     });
 
     const verificationUrl = config.reCaptchaUrl + '?' + params;
@@ -37,8 +27,8 @@ module.exports = function(req, res, next) {
       const result = JSON.parse(body);
 
       if(!result.success) {
-        res.status(403).send(`reCaptcha verification failed, ip: ${req.connection.remoteAddress}`);
-        logger.info(`reCaptcha verification failed, ip: ${req.connection.remoteAddress}`);
+        res.status(403).send(`reCaptcha verification failed, ip: ${remoteip}`);
+        logger.info(`reCaptcha verification failed, ip: ${remoteip}`);
         return;
       }
 
