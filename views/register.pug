@@ -9,6 +9,7 @@ html(lang="en")
 
     title Lingvoric
   
+    script(src='https://www.google.com/recaptcha/api.js')
   body
     nav(class="navbar navbar-expand-lg fixed-top navbar-light")
       div(class="container")
@@ -45,7 +46,8 @@ html(lang="en")
                   div(class="input-group-text") e-mail              
                 input(type="text" class="form-control" id="inlineFormEmail" placeholder="email")
             div(class="col-12 col-sm-2 d-flex justify-content-end")
-              button(class="btn btn-success about__btn" type="submit") Отправить      
+              button(class="btn btn-success about__btn" type="submit") Отправить
+            div(class="g-recaptcha" data-sitekey="6LfzyWMUAAAAANNrUbVMoWajJOOSdau3EndwavUK")        
 
   script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")
