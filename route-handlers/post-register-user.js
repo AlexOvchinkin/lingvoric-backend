@@ -27,9 +27,8 @@ module.exports = function(req, res, next) {
       const result = JSON.parse(body);
 
       if(!result.success) {
-        res.status(403).send(`reCaptcha verification failed, ip: ${remoteip}`);
         logger.info(`reCaptcha verification failed, ip: ${remoteip}`);
-        return;
+        return res.redirect('/recaptcha-error');
       }
 
       res.status(200).send('user registration - done');
@@ -38,5 +37,6 @@ module.exports = function(req, res, next) {
     return;
   }
 
-  res.status(200).send('error');
+  logger.info('reCaptcha error');
+  return next('reCaptcha error');
 };

@@ -1,7 +1,7 @@
 {
   "name": "lingvoric-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "backend",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,15 +23,16 @@
     "winston": "^3.0.0-rc5"
   },
   "devDependencies": {
+    "browser-sync": "^2.24.5",
+    "graceful-fs": "^4.1.11",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-clean-css": "^3.9.4",
     "gulp-pug": "^4.0.1",
-    "gulp-sourcemaps": "^2.6.4",
-    "gulp-watch": "^5.0.0",
-    "browser-sync": "^2.24.5",
-    "graceful-fs": "^4.1.11",
     "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^5.0.0",
     "hoek": "^5.0.3",
     "minimatch": "^3.0.4"
   }

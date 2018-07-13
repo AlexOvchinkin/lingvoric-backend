@@ -7,6 +7,8 @@ const logger     = require('./lib/logger');
 const API        = require('./lib/router-api');
 const VideoModel = require('./models/video');
 
+const { renderPage } = require('./scripts/useful');
+
 // start Express
 const app = express();
 
@@ -37,6 +39,7 @@ app.use('/api', API);
 // GET
 app.get('/', require('./route-handlers/get-start-page'));
 app.get('/register', require('./route-handlers/get-register-page'));
+app.get('/recaptcha-error', renderPage('reCaptcha-error'));
 
 // POST
 app.post('/register-user', require('./route-handlers/post-register-user'));

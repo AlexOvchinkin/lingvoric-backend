@@ -5,7 +5,7 @@ html(lang="en")
     meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
 
     link(rel="icon", href="pict/favicon.png")
-    link(rel="stylesheet" href="register.css")
+    link(rel="stylesheet" href="styles.css")
 
     title Lingvoric
   
@@ -39,27 +39,39 @@ html(lang="en")
             p(class="card-text font-italic about__text") Если вам стало интересно - оставьте, пожалуйста, адрес вашей почты 
               |и я сообщу вам персонально, когда он запустится.
             p(class="h2 card-text text-center about__text my-5") Спасибо за ваше внимание!
-          form(class="form-inline registration" action="/register-user" method="POST")
-            div(class="col mb-3")
+          
+          form(class="form-inline needs-validation registration" action="/register-user" method="POST" novalidate)
+            div(class="col-12 mb-3")
               div(class="input-group")
                 div(class="input-group-prepend")
                   div(class="input-group-text registration__label") Ваше имя*
-                input(type="text" class="form-control" id="inlineFormName" placeholder="Как вас зовут")  
-            div(class="col-12 col-sm-10")
+                input(type="text" 
+                      class="form-control" 
+                      id="inlineFormName" 
+                      placeholder="Как вас зовут" 
+                      required) 
+                div(class="valid-feedback") все верно
+                div(class="invalid-feedback") укажите ваше имя
+            div(class="col-12 mb-3")
               div(class="input-group")
                 div(class="input-group-prepend")
                   div(class="input-group-text registration__label") e-mail*              
-                input(type="text" class="form-control" id="inlineFormEmail" placeholder="email")
-            div(class="col-12 col-sm-2 d-flex justify-content-end")
+                input(type="email" 
+                      class="form-control" 
+                      id="inlineFormEmail" 
+                      placeholder="Ваша почта"
+                      required)
+                div(class="valid-feedback") все верно
+                div(class="invalid-feedback") почта указана неверно      
+            div(class="col-12 d-flex justify-content-end mb-3")
               button(class="btn btn-success about__btn" type="submit") Отправить
-            div(class="col d-flex justify-content-center pt-3")  
+            div(class="col-12 d-flex justify-content-center")  
               div(class="g-recaptcha" data-sitekey="6LfzyWMUAAAAANNrUbVMoWajJOOSdau3EndwavUK")        
 
   script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")
   script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous")   
-
-
+  script(src="/register-form-validation.js")
 
 
 

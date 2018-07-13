@@ -7,7 +7,8 @@ module.exports = {
   reCaptchaUrl: 'https://www.google.com/recaptcha/api/siteverify',
   gulp: {
     src: {
-      pug           : 'views/*.pug',    
+      pug           : 'views/*.pug', 
+      js            : 'scripts/frontend/*.js',   
       stylesCompile : 'scss/styles/*.scss',
       stylesWatch   : 'scss/*/*.scss'
     },

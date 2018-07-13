@@ -6,6 +6,7 @@ const cleanCSS    = require('gulp-clean-css');
 const sourcemaps  = require('gulp-sourcemaps');
 const browserSync = require('browser-sync');
 const pug         = require('gulp-pug');
+const uglify      = require('gulp-uglify')
 
 const reload = browserSync.reload;
 
@@ -35,10 +36,21 @@ gulp.task('styles', function () {
 });
 
 /*
+ / Javascript task
+*/
+gulp.task('js', function () {
+  gulp.src(config.gulp.src.js)
+    .pipe(uglify())
+    .pipe(gulp.dest(config.gulp.build))
+    .pipe(reload({ stream: true }));
+});
+
+/*
  / Watcher
 */
 gulp.task('watch', function () {
   gulp.watch(config.gulp.src.pug, ['pug']);
+  gulp.watch(config.gulp.src.js, ['js']);
   gulp.watch(config.gulp.src.stylesWatch, ['styles']);
 });
 
@@ -59,4 +71,4 @@ gulp.task('browserSync', function () {
 /*
  / DEFAULT task
 */
-gulp.task('default', ['pug', 'styles', 'watch', 'browserSync']);
+gulp.task('default', ['pug', 'styles', 'js', 'watch', 'browserSync']);
