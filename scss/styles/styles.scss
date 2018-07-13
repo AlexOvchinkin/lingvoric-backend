@@ -1,0 +1,227 @@
+@import "../source/bootstrap";
+
+.navbar.fixed-top {
+  background-color: white;
+  border          : none;
+  border-bottom   : 1px solid $gray-300;
+}
+
+header {
+  background      : url(pict/main-big.jpg) no-repeat center;
+  background-size : cover;
+  height          : 100vh;
+  border-top      : 1px solid $gray-300;
+  padding-top     : 3rem;
+  color           : $main-text-color; 
+  
+  @include media-breakpoint-up(sm) {
+    padding-top: 5rem;
+  }
+
+  .header-overlay {
+    height : 100%;
+    color  : #ECECEC;
+
+    .left-side {
+      background-color : rgba($color: #3498DB, $alpha: 0.8);
+      text-align       : center;
+
+      .big-text {
+        color       : #34495E;
+        font-size   : $h2-font-size;
+        font-weight : $font-weight-bold;
+        
+        @include media-breakpoint-up(lg) {
+          font-size: $h1-font-size;  
+        }
+      }
+
+      .middle-text {
+        font-size   : $h4-font-size;
+        font-weight : $font-weight-bold;
+        color       : tint(#34495E, 10%);
+        
+        @include media-breakpoint-up(lg) {
+          font-size: $h2-font-size;  
+        }
+      }
+
+      .small-text {
+        @include media-breakpoint-up(lg) {
+          font-size: $h4-font-size;  
+        }
+      }
+    }
+  }
+}
+
+.section-try {
+  margin: 2rem 0 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-try__title {
+  font-size     : $h2-font-size;
+  font-weight   : $headings-font-weight;
+  margin-bottom : 0;
+  text-align    : center;
+}
+
+.section-try__subtitle {
+  font-size  : $h5-font-size;
+  text-align : center;
+  margin-top : 0;
+  color      : $sec-text-color;
+}
+
+.section-try__btn {
+  color            : white;
+  font-size        : $h5-font-size;
+
+  &:hover {
+    color: white !important;
+  }
+}
+
+.check-table {
+  padding          : 2rem 0;
+  background-color : $bg-color-secondary;
+  color            : $main-text-color;
+
+  @include media-breakpoint-up(lg) {
+    padding: 5rem 0;  
+  }
+}
+
+.check-table__text {
+  font-size  : $h3-font-size; 
+  padding    : 0; 
+  text-align : center;
+  margin     : 0;
+
+  @include media-breakpoint-up(sm) {
+    text-align   : left;  
+    padding-left : 1.5rem;
+  }
+}
+
+.check-table__item {
+  margin: 2rem 0;
+}
+
+.check-table__img {
+  display : block;
+  margin  : 1.5rem auto;
+
+  @include media-breakpoint-up(sm) {
+    margin: 0 auto;    
+  }
+}
+
+.fun-learning {
+  padding-top : 3rem;
+  color       : $main-text-color;
+}
+
+.fun-learning__title {
+  font-size     : $h2-font-size; 
+  font-weight   : $headings-font-weight;
+  text-align    : center; 
+  margin-bottom : 2rem;
+}
+
+.fun-learning__text {
+  font-size : $h4-font-size;
+  color     : $sec-text-color;
+}
+
+.fun-slogans {
+  background-color : $bg-color-secondary;
+  padding          : 2rem 0;
+  margin-top       : 3rem;
+  color            : $main-text-color;
+}
+
+.fun-slogans__text {
+  text-align : center;
+  font-size  : $h4-font-size;
+  font-weight   : $headings-font-weight;
+}
+
+.fun-slogans__img {
+  max-width : 15rem;
+  margin    : auto auto 2rem auto;
+  display   : block;
+}
+
+.fun-slogans__item {
+  margin-top: 3rem;
+}
+
+.steps-section {
+  color: $main-text-color;
+  padding-top: 3rem;
+}
+
+.steps-section__title {
+  text-align    : center;
+  font-size     : $h2-font-size;
+  font-weight   : $headings-font-weight;
+  margin-bottom : 3rem;
+}
+
+.steps-section__list {
+  list-style-type : none;
+  margin          : 0;
+  padding         : 0;
+  font-size       : $h4-font-size;
+}
+
+.steps-section__item {
+  margin-bottom: 2rem;
+
+  .last-img {
+    height : 6rem;
+    width  : 6rem;
+    margin : 1rem auto;
+  }
+
+  .last-text {
+    text-align: center;
+  }
+}
+
+.steps-section__item:last-child {
+  margin: 5rem 0;
+}
+
+.steps-section__img {
+  height : 4rem;
+  width  : 4rem;
+  margin : 1rem auto;
+
+  @include media-breakpoint-up(sm) {
+    margin: 0 2rem 0 0;  
+  }
+}
+
+.steps-section__text {
+  text-align: center;  
+
+  @include media-breakpoint-up(sm) {  
+    text-align: left;
+  }
+}
+
+.footer {
+  background-color: white;
+  border-top: 1px solid $gray-300;
+  padding-bottom: 2rem;
+}
+
+.footer__brand {
+  margin: 1rem 0;
+}
+

@@ -15,8 +15,8 @@ module.exports = function(req, res, next) {
   if (reCaptcha) {
     const params = queryString.stringify({
       'secret'   : secretKeys.reCaptchaKey,
-      'response' : 'g-recaptcha-response',
-      'remoteip' :  remoteip
+      'response' : reCaptcha,
+      'remoteip' : remoteip
     });
 
     const verificationUrl = config.reCaptchaUrl + '?' + params;

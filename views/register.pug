@@ -26,7 +26,7 @@ html(lang="en")
           img(class="card-img-top" src="http://via.placeholder.com/300x300" alt="Card image cap")
           div(class="card-body")
             p(class="card-title about__title mt-3") Привет! Меня зовут Алексей.
-            p(class="card-title about__title mb-3") Я разработчик этого сервиса.
+            p(class="card-title about__title mb-3") Я разработчик сервиса Lingvoric.
             p(class="card-text about__text") В процессе изучения языка я  сам столкнулся с трудностями 
               |восприятия беглой "нативной" речи.
             p(class="card-text about__text") Поэтому и возникла идея создать этот сервис, чтобы помочь 
@@ -39,15 +39,21 @@ html(lang="en")
             p(class="card-text font-italic about__text") Если вам стало интересно - оставьте, пожалуйста, адрес вашей почты 
               |и я сообщу вам персонально, когда он запустится.
             p(class="h2 card-text text-center about__text my-5") Спасибо за ваше внимание!
-          form(class="form-inline" action="/register-user" method="POST")
+          form(class="form-inline registration" action="/register-user" method="POST")
+            div(class="col mb-3")
+              div(class="input-group")
+                div(class="input-group-prepend")
+                  div(class="input-group-text registration__label") Ваше имя*
+                input(type="text" class="form-control" id="inlineFormName" placeholder="Как вас зовут")  
             div(class="col-12 col-sm-10")
               div(class="input-group")
                 div(class="input-group-prepend")
-                  div(class="input-group-text") e-mail              
+                  div(class="input-group-text registration__label") e-mail*              
                 input(type="text" class="form-control" id="inlineFormEmail" placeholder="email")
             div(class="col-12 col-sm-2 d-flex justify-content-end")
               button(class="btn btn-success about__btn" type="submit") Отправить
-            div(class="g-recaptcha" data-sitekey="6LfzyWMUAAAAANNrUbVMoWajJOOSdau3EndwavUK")        
+            div(class="col d-flex justify-content-center pt-3")  
+              div(class="g-recaptcha" data-sitekey="6LfzyWMUAAAAANNrUbVMoWajJOOSdau3EndwavUK")        
 
   script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")
