@@ -40,6 +40,13 @@ app.use('/api', API);
 app.get('/', require('./route-handlers/get-start-page'));
 app.get('/register', require('./route-handlers/get-register-page'));
 app.get('/recaptcha-error', renderPage('reCaptcha-error'));
+app.get('/recaptcha-success', renderPage('reCaptcha-success'));
+app.get('/404', renderPage('404'));
+app.get('/500', renderPage('500'));
+
+app.get('*', function (req, res, next) {
+  return res.redirect('/404');
+});
 
 // POST
 app.post('/register-user', require('./route-handlers/post-register-user'));
@@ -48,7 +55,7 @@ app.post('/register-user', require('./route-handlers/post-register-user'));
 function errorHandler(err, req, res, next) {
   logger.err(err);
   res.status(500);
-  res.send(err);
+  return res.redirect('/500');
 }
 
 // start application

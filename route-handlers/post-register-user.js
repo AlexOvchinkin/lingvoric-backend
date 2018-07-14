@@ -31,7 +31,7 @@ module.exports = function(req, res, next) {
         return res.redirect('/recaptcha-error');
       }
 
-      res.status(200).send('user registration - done');
+      return res.redirect('/recaptcha-success');
     });
 
     return;
