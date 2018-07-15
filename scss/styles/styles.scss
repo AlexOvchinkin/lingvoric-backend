@@ -8,7 +8,7 @@
 }
 
 header {
-  background      : url(pict/main-big.jpg) no-repeat center;
+  background      : url(pict/main-big.jpg) no-repeat left top;
   background-size : cover;
   height          : 100vh;
   border-top      : 1px solid $gray-300;
@@ -22,16 +22,26 @@ header {
   .header-overlay {
     height : 100%;
     color  : #ECECEC;
+    //color       : #34495E;
 
     .left-side {
-      background-color : rgba($color: #3498DB, $alpha: 0.8);
+      background: linear-gradient(
+        rgba($color: rgb(170, 112, 99), $alpha: 0.7),
+        transparent 50%);
+
+      background-size: .3rem .3rem;
+      background-color: rgba($color: #4E342E, $alpha: 0.7);
+
       text-align       : center;
 
       .big-text {
-        color       : #34495E;
         font-size   : $h2-font-size;
         font-weight : $font-weight-bold;
         
+        @media (orientation: landscape) {
+          font-size: $h4-font-size;
+        }
+
         @include media-breakpoint-up(lg) {
           font-size: $h1-font-size;  
         }
@@ -40,14 +50,25 @@ header {
       .middle-text {
         font-size   : $h4-font-size;
         font-weight : $font-weight-bold;
-        color       : tint(#34495E, 10%);
-        
+
+        @media (orientation: landscape) {
+          font-size: $h5-font-size;
+        }
+
         @include media-breakpoint-up(lg) {
-          font-size: $h2-font-size;  
+          font-size: $h4-font-size;  
         }
       }
 
       .small-text {
+        @include media-breakpoint-up(lg) {
+          font-size: $h4-font-size;  
+        }
+
+        @media (orientation: landscape) {
+          font-size: $h6-font-size;
+        }
+
         @include media-breakpoint-up(lg) {
           font-size: $h4-font-size;  
         }

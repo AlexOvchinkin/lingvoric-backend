@@ -1,10 +1,11 @@
 'use strict'
 
-const logger = require('../lib/logger');
-const queryString = require('query-string');
-const secretKeys = require('../secret-keys');
-const request = require('request');
-const config = require('../config');
+const logger       = require('../lib/logger');
+const queryString  = require('query-string');
+const secretKeys   = require('../secret-keys');
+const request      = require('request');
+const config       = require('../config');
+const mailer       = require('../scripts/mailer');
 
 module.exports = function(req, res, next) {
   logger.info('handled route: POST register-user');
@@ -31,12 +32,22 @@ module.exports = function(req, res, next) {
         return res.redirect('/recaptcha-error');
       }
 
-      return res.redirect('/recaptcha-success');
+      mailer.sendMail({
+        subject : 'Registration successful',
+        text    : `name: ${req.body.user_name}, email: ${req.body.user_email}`
+      })
+        .then(result => logger.info(result))
+        .catch(err => logger.err(err));
+
+      // save info into database
+      
+
+      return res.redirect('/registration-success');
     });
 
     return;
   }
 
   logger.info('reCaptcha error');
-  return next('reCaptcha error');
+  return res.redirect('/500');
 };

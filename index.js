@@ -6,6 +6,7 @@ const cors       = require('cors');
 const logger     = require('./lib/logger');
 const API        = require('./lib/router-api');
 const VideoModel = require('./models/video');
+const mailer     = require('./scripts/mailer');
 
 const { renderPage } = require('./scripts/useful');
 
@@ -13,7 +14,10 @@ const { renderPage } = require('./scripts/useful');
 const app = express();
 
 // CORS ENABLED
-app.use(cors());
+//app.use(cors());
+
+// init mailer
+mailer.createDefaultTransport();
 
 // PUG
 app.set('views', './views');
@@ -31,18 +35,17 @@ mongoose.connection.once('open', function() {
   logger.info('Mongo connection successful ...');
 });
 
-
 // ROUTES
 // router - API
 app.use('/api', API);
 
 // GET
-app.get('/', require('./route-handlers/get-start-page'));
-app.get('/register', require('./route-handlers/get-register-page'));
-app.get('/recaptcha-error', renderPage('reCaptcha-error'));
-app.get('/recaptcha-success', renderPage('reCaptcha-success'));
-app.get('/404', renderPage('404'));
-app.get('/500', renderPage('500'));
+app.get('/'                     , require('./route-handlers/get-start-page'));
+app.get('/register'             , require('./route-handlers/get-register-page'));
+app.get('/recaptcha-error'      , renderPage('reCaptcha-error'));
+app.get('/registration-success' , renderPage('registration-success'));
+app.get('/404'                  , renderPage('404'));
+app.get('/500'                  , renderPage('500'));
 
 app.get('*', function (req, res, next) {
   return res.redirect('/404');
@@ -53,7 +56,7 @@ app.post('/register-user', require('./route-handlers/post-register-user'));
 
 // global error handler
 function errorHandler(err, req, res, next) {
-  logger.err(err);
+  logger.error(err);
   res.status(500);
   return res.redirect('/500');
 }
