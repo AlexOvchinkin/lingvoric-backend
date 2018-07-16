@@ -1,3 +1,4 @@
 /node_modules
 /secret-keys.js
 /dist
+errors.log
