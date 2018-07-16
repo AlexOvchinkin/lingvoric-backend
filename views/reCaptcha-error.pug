@@ -10,13 +10,15 @@ html(lang="en")
     title Lingvoric
 
   body
-    div(class="container d-flex flex-column align-items-center")
-      p(class="h1 text-center m-0 mt-5") Ошибка идентификации
-      p(class="h4 text-center text-muted") Google reCaptcha
-      p(class="h5 text-center my-3") К сожалению, вы не прошли идентификацию reCaptcha. 
-        |Попробуйте, пожалуйста, еще раз.
-      a(class="btn btn-success" href="/register") Перейти к регистрации
-
+    div(class="container")
+      div(class="card warning-card")
+        img(class="card-img-top img-fluid my-5 warning-card__img" src="pict/recaptcha-error.jpg" alt="404")
+        div(class="card-body warning-card__body")
+          h5(class="card-title warning-card__title") Ошибка идентификации
+          h4(class="card-title text-muted mb-3 warning-card__title") reCaptcha
+          h5(class="card-title warning-card__title") К сожалению, вы не прошли идентификацию. 
+            |Попробуйте, пожалуйста, еще раз.
+          a(class="btn btn-success warning-card__btn" href="/register") Перейти к регистрации
 
   script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")

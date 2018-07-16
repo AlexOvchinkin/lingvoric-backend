@@ -1,10 +1,15 @@
 @import "../source/bootstrap";
 @import "../source/register";
+@import "../source/warnings";
 
 .navbar.fixed-top {
   background-color: white;
   border          : none;
   border-bottom   : 1px solid $gray-300;
+}
+
+.cookie-nav {
+  color: whitesmoke;
 }
 
 header {
@@ -160,9 +165,9 @@ header {
 }
 
 .fun-slogans {
-  background-color : $bg-color-secondary;
+  // background-color : $bg-color-secondary;
   padding          : 2rem 0;
-  margin-top       : 3rem;
+  margin-top       : 1rem;
   color            : $main-text-color;
 }
 
@@ -173,7 +178,8 @@ header {
 }
 
 .fun-slogans__img {
-  max-width : 15rem;
+  max-width : 100%;
+  height: auto;
   margin    : auto auto 2rem auto;
   display   : block;
 }
@@ -184,6 +190,7 @@ header {
 
 .steps-section {
   color: $main-text-color;
+  background-color : $bg-color-secondary;
   padding-top: 3rem;
 }
 
@@ -216,7 +223,8 @@ header {
 }
 
 .steps-section__item:last-child {
-  margin: 5rem 0;
+  margin: 5rem 0 3rem 0;
+  padding-bottom: 3rem;
 }
 
 .steps-section__img {

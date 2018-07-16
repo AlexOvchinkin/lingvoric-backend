@@ -78,7 +78,7 @@ html(lang="en")
       div(class="container")  
         div(class="row fun-slogans__item")
           div(class="col-12 col-lg-6")
-            img(class="fun-slogans__img img-left" src="pict/learning.jpg", alt="learning")
+            img(class="fun-slogans__img img-left img-fluid" src="pict/learning.png", alt="learning")
           div(class="col-12 col-lg-6 d-flex align-items-center justify-content-center")  
             p(class="fun-slogans__text") Учеба должна быть увлекательной  
         
@@ -87,11 +87,11 @@ html(lang="en")
             p(class="fun-slogans__text") Скоро вы сможете наслаждаться просмотром фильмов в оригинале, 
               |и даже новостные выпуски больше не будут проблемой      
           div(class="col-12 col-lg-6 order-first  order-lg-last")  
-            img(class="fun-slogans__img img-right" src="pict/cinema.jpg", alt="learning")
+            img(class="fun-slogans__img img-right img-fluid" src="pict/cinema.jpg", alt="learning")
 
         div(class="row fun-slogans__item")
           div(class="col-12 col-lg-6")
-            img(class="fun-slogans__img img-left" src="pict/welcome.jpg", alt="learning")
+            img(class="fun-slogans__img img-left img-fluid" src="pict/welcome.jpg", alt="learning")
           div(class="col-12 col-lg-6  d-flex align-items-center justify-content-center")  
             p(class="fun-slogans__text") Заходите и попробуйте            
 
@@ -126,12 +126,22 @@ html(lang="en")
         a(class="navbar-brand footer__brand" href="#")
           img(src="pict/logo.png" height="30" alt="")
         div
-          |Разработка:
+          |Создание сервиса:
           |  
           a(class="footer__link" href="http://alexovchinkin.com")
             i Alex Ovchinkin  
 
+    nav(class="navbar navbar-expand-lg fixed-bottom navbar-dark bg-dark d-none cookie-nav" id="cookie-nav")
+      div(class="container")     
+        p(class="m=0") Этот сайт использует cookies с целью регистрации и обслуживания Ваших настроек 
+          |(это включает в себя возможность оставаться авторизованным на данном сайте при повторных 
+          |посещениях, отображение сайта на выбранном Вами языке), а также для
+          |анализа данных, что позволяет определять, как используется сайт и улучшать его.
+          |Продолжая использование Вы соглашаетесь на использование cookie-файлов.
+        button(class="btn btn-success" id="cookie-btn") Понятно    
+
     script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")
     script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous")
+    script(src="js.cookie.js")
     script(src="cookie-agreement.js")
