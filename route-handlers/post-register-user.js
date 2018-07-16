@@ -51,12 +51,14 @@ module.exports = function(req, res, next) {
       .then(user => {
         if (user.created) {
           // email notification
+          /*
           mailer.sendMail({
             subject : 'Registration successful',
             text    : `name: ${userName}, email: ${userEmail}`
           })
             .then(result => logger.info(result))
             .catch(err => logger.err(err));
+          */
         }  
 
         // redirect to the successful route  
