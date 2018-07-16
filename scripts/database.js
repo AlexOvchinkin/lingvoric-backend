@@ -1,6 +1,7 @@
 'use strict'
 
 const VideoModel = require('../models/video');
+const UserModel  = require('../models/users');
 
 /*
  * function creates new record in DB
@@ -65,4 +66,35 @@ function saveVideoData(body) {
   });
 }
 
-module.exports.saveVideoData   = saveVideoData;
+function saveUser(userData) {
+  return new Promise(function(resolve, reject) {
+    if(!userData || !userData.email) return reject('User date is empty');
+
+    const query = UserModel.where({email: userData.email});
+    query.findOne()
+      .then(user => {
+        if(user) return resolve({
+          created : false,
+          user    : user
+        });
+
+        const newUser = new UserModel({
+          name  : userData.name,
+          email : userData.email
+        });
+
+        newUser.save()
+          .then(user => {
+            resolve({
+              created : true,
+              user    : user
+            });
+          })
+          .catch(err => reject(err));
+      })
+      .catch(err => reject(err));
+  });
+}
+
+module.exports.saveVideoData  = saveVideoData;
+module.exports.saveUser       = saveUser;

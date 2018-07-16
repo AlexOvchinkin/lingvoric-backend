@@ -7,47 +7,64 @@ const request      = require('request');
 const config       = require('../config');
 const mailer       = require('../scripts/mailer');
 
+const { saveUser } = require('../scripts/database');
+
 module.exports = function(req, res, next) {
   logger.info('handled route: POST register-user');
 
-  const reCaptcha = req.body["g-recaptcha-response"];
-  const remoteip = req.headers["x-forwarded-for"];
+  const reCaptcha  = req.body["g-recaptcha-response"];
+  const remoteip   = req.headers["x-forwarded-for"];
+  const userName   = req.body.user_name;
+  const userEmail  = req.body.user_email;
 
-  if (reCaptcha) {
-    const params = queryString.stringify({
-      'secret'   : secretKeys.reCaptchaKey,
-      'response' : reCaptcha,
-      'remoteip' : remoteip
-    });
-
-    const verificationUrl = config.reCaptchaUrl + '?' + params;
-
-    request(verificationUrl, function (error, response, body) {
-      if (error) return next(error);
-
-      const result = JSON.parse(body);
-
-      if(!result.success) {
-        logger.info(`reCaptcha verification failed, ip: ${remoteip}`);
-        return res.redirect('/recaptcha-error');
-      }
-
-      mailer.sendMail({
-        subject : 'Registration successful',
-        text    : `name: ${req.body.user_name}, email: ${req.body.user_email}`
-      })
-        .then(result => logger.info(result))
-        .catch(err => logger.err(err));
-
-      // save info into database
-      
-
-      return res.redirect('/registration-success');
-    });
-
-    return;
+  if(!userName || !userEmail) {
+    logger.error(`Form fields are empty: user-name - "${userName}", user-email - "${userEmail}"`);
+    return res.redirect('/500');
   }
 
-  logger.info('reCaptcha error');
-  return res.redirect('/500');
+  if (!reCaptcha) {
+    logger.error(`reCaptcha verification failed, ip: ${remoteip}`);
+    return res.redirect('/recaptcha-error');
+  }
+
+  
+  const params = queryString.stringify({
+    'secret'   : secretKeys.reCaptchaKey,
+    'response' : reCaptcha,
+    'remoteip' : remoteip
+  });
+
+  const verificationUrl = config.reCaptchaUrl + '?' + params;
+
+  request(verificationUrl, function (error, response, body) {
+    if (error) return next(error);
+
+    const result = JSON.parse(body);
+
+    if(!result.success) {
+      logger.error(`reCaptcha verification failed, ip: ${remoteip}`);
+      return res.redirect('/recaptcha-error');
+    }
+
+    // save info into database
+    saveUser({ name: userName, email: userEmail })
+      .then(user => {
+        if (user.created) {
+          // email notification
+          mailer.sendMail({
+            subject : 'Registration successful',
+            text    : `name: ${userName}, email: ${userEmail}`
+          })
+            .then(result => logger.info(result))
+            .catch(err => logger.err(err));
+        }  
+
+        // redirect to the successful route  
+        res.redirect('/registration-success');  
+      })
+      .catch(err => {
+        logger.error('Error during saving user into DB');
+        res.redirect('/500');
+      });
+  });
 };
