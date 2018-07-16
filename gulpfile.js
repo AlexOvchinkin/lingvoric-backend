@@ -25,7 +25,7 @@ gulp.task('pug', function () {
  / Styles task
 */
 gulp.task('styles', function () {
-  gulp.src(config.gulp.src.stylesCompile)
+  return gulp.src(config.gulp.src.stylesCompile)
     .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(prefixer())
@@ -39,7 +39,7 @@ gulp.task('styles', function () {
  / Javascript task
 */
 gulp.task('js', function () {
-  gulp.src(config.gulp.src.js)
+  return gulp.src(config.gulp.src.js)
     .pipe(uglify())
     .pipe(gulp.dest(config.gulp.build))
     .pipe(reload({ stream: true }));
@@ -49,16 +49,40 @@ gulp.task('js', function () {
  / Watcher
 */
 gulp.task('watch', function () {
-  gulp.watch(config.gulp.src.pug, ['pug']);
-  gulp.watch(config.gulp.src.js, ['js']);
-  gulp.watch(config.gulp.src.stylesWatch, ['styles']);
+  gulp.watch(config.gulp.src.pug)
+    .on('change', function(path, stats) {
+      gulp.src(config.gulp.src.pug)
+        .pipe(pug( { pretty: true } ))
+        .pipe(gulp.dest(config.gulp.build))
+        .pipe(reload({ stream: true }));
+    });
+   
+  gulp.watch(config.gulp.src.js)
+    .on('change', function(path, stats) {
+      gulp.src(config.gulp.src.js)
+        .pipe(uglify())
+        .pipe(gulp.dest(config.gulp.build))
+        .pipe(reload({ stream: true }));
+    });
+    
+  gulp.watch(config.gulp.src.stylesWatch)
+    .on('change', function(path, stats) {
+      return gulp.src(config.gulp.src.stylesCompile)
+        .pipe(sourcemaps.init())
+        .pipe(sass())
+        .pipe(prefixer())
+        .pipe(cleanCSS())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(config.gulp.build))
+        .pipe(reload({ stream: true }));
+    });  
 });
 
 /*
  / browserSync task
 */
 gulp.task('browserSync', function () {
-  browserSync({
+  return browserSync({
     server: {
       baseDir: './dist'
     },
@@ -71,4 +95,4 @@ gulp.task('browserSync', function () {
 /*
  / DEFAULT task
 */
-gulp.task('default', ['pug', 'styles', 'js', 'watch', 'browserSync']);
+gulp.task('default', gulp.parallel('pug', 'styles', 'js', 'watch', 'browserSync'));
